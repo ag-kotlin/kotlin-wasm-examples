@@ -68,17 +68,17 @@ compose.experimental {
     web.application {}
 }
 
-tasks.withType<KotlinJsCompile>().configureEach {
-    val kotlinVersion = project.property("kotlin.version") as String
-    kotlinOptions.freeCompilerArgs += listOf(
-        // With decoys disabled, we have IdSignature clashes,
-        // so disable signature-clash-checks (decoys are going to be removed in the future )
-//        "-Xklib-enable-signature-clash-checks=false",
-        "-P", "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=$kotlinVersion",
-//        "-Xskip-prerelease-check",
-//        "-Xpartial-linkage=enable",
-    )
-}
+//tasks.withType<KotlinJsCompile>().configureEach {
+//    val kotlinVersion = project.property("kotlin.version") as String
+//    kotlinOptions.freeCompilerArgs += listOf(
+//        // With decoys disabled, we have IdSignature clashes,
+//        // so disable signature-clash-checks (decoys are going to be removed in the future )
+////        "-Xklib-enable-signature-clash-checks=false",
+//        "-P", "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=$kotlinVersion",
+////        "-Xskip-prerelease-check",
+////        "-Xpartial-linkage=enable",
+//    )
+//}
 
 val composeVersion = project.property("compose.version") as String
 compose.kotlinCompilerPlugin.set(composeVersion)
