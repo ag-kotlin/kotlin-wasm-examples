@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     kotlin("multiplatform")
@@ -44,3 +45,18 @@ compose.desktop {
         }
     }
 }
+
+//tasks.withType<KotlinJvmCompile>().configureEach {
+//    val kotlinVersion = project.property("kotlin.version") as String
+//    kotlinOptions.freeCompilerArgs += listOf(
+//        // With decoys disabled, we have IdSignature clashes,
+//        // so disable signature-clash-checks (decoys are going to be removed in the future )
+////        "-Xklib-enable-signature-clash-checks=false",
+//        "-P", "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=$kotlinVersion",
+////        "-Xskip-prerelease-check",
+////        "-Xpartial-linkage=enable",
+//    )
+//}
+
+val composeVersion = project.property("compose.version") as String
+compose.kotlinCompilerPlugin.set(composeVersion)

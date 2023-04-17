@@ -1,7 +1,7 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -115,3 +115,18 @@ android {
 
 // Use a proper version of webpack, TODO remove after updating to Kotlin 1.9.
 rootProject.the<NodeJsRootExtension>().versions.webpack.version = "5.76.2"
+
+//tasks.withType<KotlinCompile>().configureEach {
+//    val kotlinVersion = project.property("kotlin.version") as String
+//    kotlinOptions.freeCompilerArgs += listOf(
+//        // With decoys disabled, we have IdSignature clashes,
+//        // so disable signature-clash-checks (decoys are going to be removed in the future )
+////        "-Xklib-enable-signature-clash-checks=false",
+//        "-P", "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=$kotlinVersion",
+////        "-Xskip-prerelease-check",
+////        "-Xpartial-linkage=enable",
+//    )
+//}
+
+val composeVersion = project.property("compose.version") as String
+compose.kotlinCompilerPlugin.set(composeVersion)
